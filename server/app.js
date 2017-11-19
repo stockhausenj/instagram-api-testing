@@ -1,6 +1,5 @@
 // Import modules.
 const express = require("express"),
-	fs = require("fs"),
 	path = require("path"),
 	bodyParser = require("body-parser"),
 	assert = require("assert");
@@ -11,14 +10,11 @@ const app = express();
 // Enables the return of an object that contains the parsed request body.
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.set("view engine", "pug");
+app.set('view engine', 'pug')
 app.set("views", path.join(__dirname, "/../client"));
 
 app.get("/", function(req, res) {
-	res.render("add_movie", { title: "Add Movie", message: "Hello there!" });
-});
-app.get("/test", function(req, res) {
-	res.render("test", { title: "Add Movie", message: "Hello there!" });
+	res.render("index");
 });
 
 let server = app.listen(8080, function() {
