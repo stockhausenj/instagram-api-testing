@@ -1,0 +1,31 @@
+html
+	head
+		title= title
+		style
+			include css/triangles.css
+			include css/bulma.css
+	body
+		section(class="section")
+			div(class="container")
+				h1(class="title is-1") InstagramAPI Testing
+				div(class="tile is-ancestor")
+					div(class="tile is-vertical is-8")
+						div(class="tile")
+							div(class="tile is-parent is-vertical")
+								article(class="tile is-child notification is-primary")
+									p(class="title") Tile
+								article(class="tile is-child notification is-primary") 
+									p(class="title") Tile
+							div(class="tile is-parent")
+								article(class="tile is-child notification is-primary")
+									p(class="title") Tile
+						div(class="tile is-parent")
+							article(class="tile is-child notification is-primary")
+								p(class="title") Tile
+					div(class="tile is-parent")
+						article(class="tile is-child notification is-primary")
+							p(class="title") Tile
+				block content
+	script
+		include js/browserify/sovereign-bundle.js
+		include js/main.js

@@ -1,0 +1,17 @@
+extends: 
+  - eslint:recommended
+  - prettier
+plugins:
+  - prettier
+parser: "esprima"
+parserOptions:
+  ecmaVersion: 6
+env:
+  node: true
+  browser: true
+rules: 
+  import/no-commonjs: "off"
+  import/no-nodejs-modules: "off"
+  no-console: "off"
+  prettier/prettier: "error"
+  no-unused-vars: "off"
