@@ -40,13 +40,17 @@ app.use(function(req, res, next) {
 });
 
 app.get('/', function(req, res) {
-	ig.get('users/self', (err, data) => {
-		console.log(data);
+	var p1 = ig.get('users/self', (err, data) => {
 		if (err) {
 			res.redirect('/authorize_user');
 		} else {
-			res.render("index", { username: data.data.username });
-		}
+			console.log(data.data);
+			res.render("index", { 
+				username: data.data.username,
+				bio: data.data.bio,
+				profilePicture: data.data.profile_picture
+			});
+		}	
 	});
 });
 

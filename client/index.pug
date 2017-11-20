@@ -8,12 +8,14 @@ html
 		section(class="section")
 			div(class="container")
 				h1(class="title is-1") InstagramAPI Testing - #{username}
+				p #{bio}
 				div(class="tile is-ancestor")
 					div(class="tile is-vertical is-8")
 						div(class="tile")
 							div(class="tile is-parent is-vertical")
 								article(class="tile is-child notification is-primary")
-									p(class="title") Tile
+									p(class="title") Profile Picture
+									img(src=profilePicture style="width:100%;height:auto;")
 								article(class="tile is-child notification is-primary") 
 									p(class="title") Tile
 							div(class="tile is-parent")
