@@ -42,6 +42,7 @@ app.use(function(req, res, next) {
 app.get('/', async (req, res) => {
 	var mirror = await ig.get('users/self', async (err, data) => {
 		if (err) {
+      console.log(err);
 			res.redirect('/authorize_user');
 		}
 	});
@@ -50,7 +51,7 @@ app.get('/', async (req, res) => {
 	const	profilePicture = mirror.data.profile_picture;
   var media = await ig.get('users/self/media/recent', (err, data) => {
     if (err) {
-      res.redirect('/authorize_user');
+      console.log(err);
     }
   });
   var mediaIds = media.data.map(value => value.id);
@@ -66,7 +67,7 @@ app.get('/', async (req, res) => {
 			username: username,
 			bio: bio,
 			profilePicture: profilePicture,
-			mediaUrls: mediaUrls
+//			mediaUrls: mediaUrls
 		});
   });
 });
