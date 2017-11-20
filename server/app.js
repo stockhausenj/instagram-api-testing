@@ -2,9 +2,9 @@
 
 // Make modules available.
 const express = require('express'),
-			path = require('path'),
-			fs = require("fs"),
-			instagram = require('node-instagram').default;
+	path = require('path'),
+	fs = require("fs"),
+	instagram = require('node-instagram').default;
 
 // File System object returns contents of the path.
 const creds = fs.readFileSync(path.join(__dirname, "instagram.creds"));
@@ -39,26 +39,65 @@ app.use(function(req, res, next) {
 	next();
 });
 
-app.get('/', function(req, res) {
-	var p1 = ig.get('users/self', (err, data) => {
+app.get('/', async (req, res) => {
+	var mirror = await ig.get('users/self', async (err, data) => {
 		if (err) {
 			res.redirect('/authorize_user');
-		} else {
-			console.log(data.data);
-			res.render("index", { 
-				username: data.data.username,
-				bio: data.data.bio,
-				profilePicture: data.data.profile_picture
-			});
-		}	
+		}
+	});
+	const	username = mirror.data.username;
+	const	bio = mirror.data.bio;
+	const	profilePicture = mirror.data.profile_picture;
+  var media = await ig.get('users/self/media/recent', (err, data) => {
+    if (err) {
+      res.redirect('/authorize_user');
+    }
+  });
+  var mediaIds = media.data.map(value => value.id);
+  var mediaDetails = mediaIds.map(x => ig.get('media/' + x, (err, data) => {
+    if (err) {
+      console.log(err);
+    }
+  }));
+  Promise.all(mediaDetails).then(function(results) {
+    var mediaUrls = results.map(x => x.data.images.standard_resolution.url);
+    console.log(mediaUrls);
+    res.render("index", {
+			username: username,
+			bio: bio,
+			profilePicture: profilePicture,
+			mediaUrls: mediaUrls
+		});
+  });
+});
+
+/*
+app.get('/media', async (req, res) => {
+	// Get information about this media.
+	var media = await ig.get('users/self/media/recent', (err, data) => {
+		if (err) {
+			res.redirect('/authorize_user');
+		} 
+	});
+	var mediaIds = media.data.map(value => value.id);
+	var mediaDetails = mediaIds.map(x => ig.get('media/' + x, (err, data) => {
+		if (err) {
+			console.log(err);
+		}
+	}));
+	Promise.all(mediaDetails).then(function(results) {
+		var mediaUrls = results.map(x => x.data.images.standard_resolution.url);
+		console.log(mediaUrls);
+		res.render("index");
 	});
 });
+*/
 
 // First redirect user to instagram oauth
 app.get('/authorize_user', (req, res) => {
 	res.redirect(ig.getAuthorizationUrl(redirectUri, {
 		// an array of scopes
-		scope: ['basic', 'likes'],
+		scope: ['basic', 'likes', 'public_content'],
 		// an optional state
 		state: 'your state',
 	}));

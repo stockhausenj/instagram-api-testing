@@ -20,7 +20,9 @@ html
 									p(class="title") Tile
 							div(class="tile is-parent")
 								article(class="tile is-child notification is-primary")
-									p(class="title") Tile
+									p(class="title") Most Recent Photos
+									each val in mediaUrls
+										img(src=val style="padding:5px;")
 						div(class="tile is-parent")
 							article(class="tile is-child notification is-primary")
 								p(class="title") Tile
