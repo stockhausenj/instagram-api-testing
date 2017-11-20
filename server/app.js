@@ -67,32 +67,10 @@ app.get('/', async (req, res) => {
 			username: username,
 			bio: bio,
 			profilePicture: profilePicture,
-//			mediaUrls: mediaUrls
+			mediaUrls: mediaUrls
 		});
   });
 });
-
-/*
-app.get('/media', async (req, res) => {
-	// Get information about this media.
-	var media = await ig.get('users/self/media/recent', (err, data) => {
-		if (err) {
-			res.redirect('/authorize_user');
-		} 
-	});
-	var mediaIds = media.data.map(value => value.id);
-	var mediaDetails = mediaIds.map(x => ig.get('media/' + x, (err, data) => {
-		if (err) {
-			console.log(err);
-		}
-	}));
-	Promise.all(mediaDetails).then(function(results) {
-		var mediaUrls = results.map(x => x.data.images.standard_resolution.url);
-		console.log(mediaUrls);
-		res.render("index");
-	});
-});
-*/
 
 // First redirect user to instagram oauth
 app.get('/authorize_user', (req, res) => {
