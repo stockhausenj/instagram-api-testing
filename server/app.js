@@ -40,6 +40,14 @@ app.use(function(req, res, next) {
 });
 
 app.get('/', async (req, res) => {
+	/*
+    res.render("index", {
+			username: 'lawl',
+			bio: 'lawl',
+			profilePicture: '',
+			mediaUrls: [''] 
+		});
+	*/
 	var mirror = await ig.get('users/self', async (err, data) => {
 		if (err) {
       console.log(err);

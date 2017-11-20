@@ -8,16 +8,33 @@ html
 		section(class="section")
 			div(class="container")
 				h1(class="title is-1") InstagramAPI Testing - #{username}
-				p #{bio}
+				p(style="padding:5px;") #{bio}
 				div(class="tile is-ancestor")
-					div(class="tile is-vertical is-8")
+					div(class="tile is-vertical is-12")
 						div(class="tile")
 							div(class="tile is-parent is-vertical")
 								article(class="tile is-child notification is-primary")
 									p(class="title") Profile Picture
-									img(src=profilePicture style="width:100%;height:auto;")
+									img(src=profilePicture style="margin:auto;display:block;width:75%;height:auto;")
 								article(class="tile is-child notification is-primary") 
-									p(class="title") Tile
+									p(class="title") Smile
+									//video(id="video" width="640" height="480" autoplay)
+									//button(id="snap") Snap Photo
+									//canvas(id="canvas" width="640" height="480")
+								article(class="tile is-child notification is-primary") 
+									p(class="title") Search
+								article(class="tile is-child notification is-primary") 
+									p(class="title") Meta 
+								article(class="tile is-child notification is-primary") 
+									p(class="title") Meta 
+								article(class="tile is-child notification is-primary") 
+									p(class="title") Meta 
+								article(class="tile is-child notification is-primary") 
+									p(class="title") Meta 
+								article(class="tile is-child notification is-primary") 
+									p(class="title") Meta 
+								article(class="tile is-child notification is-primary") 
+									p(class="title") Meta
 							div(class="tile is-parent")
 								article(class="tile is-child notification is-primary")
 									p(class="title") Most Recent Photos
@@ -26,9 +43,6 @@ html
 						div(class="tile is-parent")
 							article(class="tile is-child notification is-primary")
 								p(class="title") Tile
-					div(class="tile is-parent")
-						article(class="tile is-child notification is-primary")
-							p(class="title") Tile
 				block content
 	script
 		include js/browserify/sovereign-bundle.js
