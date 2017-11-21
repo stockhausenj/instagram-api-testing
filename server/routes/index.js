@@ -47,7 +47,7 @@ router.get("/authorize_user", (req, res) => {
   res.redirect(
     ig.getAuthorizationUrl(redirectUri, {
       // an array of scopes
-      scope: ["basic", "likes", "public_content"],
+      scope: ["basic", "likes", "public_content", "follower_list"],
       // an optional state
       state: "your state"
     })
@@ -62,6 +62,7 @@ router.get("/handleauth", async (req, res) => {
     const data = await ig.authorizeUser(code, redirectUri);
     // data.access_token contain the user access_token
     ig.config.accessToken = data.access_token;
+		console.log(data.access_token);
     res.redirect("/");
   } catch (err) {
     res.json(err);
