@@ -5,9 +5,10 @@ plugins:
   - prettier
 parser: "esprima"
 parserOptions:
-  ecmaVersion: 6
+  ecmaVersion: 8
 env:
   node: true
+  es6: true
 rules: 
   import/no-commonjs: "off"
   import/no-nodejs-modules: "off"
