@@ -1,1 +1,4 @@
 *.creds
+*.key
+*.crt
+node_modules
