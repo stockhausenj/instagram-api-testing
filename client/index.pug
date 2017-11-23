@@ -11,6 +11,18 @@ html
 				p(style="padding-bottom:5px;") #{bio}
 				div(class="tile is-ancestor")
 					div(class="tile is-vertical is-12")
+						div(class="tile is-parent")
+							article(class="tile is-child notification is-primary")
+								p(class="title") Magic is Science We Don't Understand Yet
+								div(class="field is-grouped")
+									p(class="control is-expanded")
+										input#rest(class="input" type="text" placeholder="Endpoint")
+									p(class="control")
+										a#exec(class="button is-info") Execute
+						div(class="tile is-parent")
+							article(class="tile is-child notification is-primary" style="overflow-x:scroll;")
+								p(class="title") Response
+								pre(id="json" style="overflow-x:scroll;")
 						div(class="tile")
 							div(class="tile is-parent is-vertical")
 								article(class="tile is-child notification is-primary")
@@ -21,10 +33,7 @@ html
 									p(class="title") Most Recent Photos
 									each val in mediaUrls
 										img(src=val style="padding:5px;")
-						div(class="tile is-parent")
-							article(class="tile is-child notification is-primary")
-								p(class="title") Tile
 				block content
-	script
-		include js/browserify/sovereign-bundle.js
-		include js/main.js
+		script
+			include js/jquery.min.js
+			include js/main.js

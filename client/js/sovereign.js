@@ -1,3 +1,4 @@
+/*
 const anime = require("animejs");
 
 anime({
@@ -5,3 +6,4 @@ anime({
   value: 1000, // Animate the input value to 1000
   round: 1 // Remove decimals by rounding the value
 });
+*/

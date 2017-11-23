@@ -18,6 +18,14 @@ router.get("/", async (req, res) => {
   const username = mirror.data.username;
   const bio = mirror.data.bio;
   const profilePicture = mirror.data.profile_picture;
+  res.render("index", {
+    username: username,
+    bio: bio,
+    profilePicture: profilePicture,
+    mediaUrls: ['']
+  });
+
+	/*
   var media = await ig.get("users/self/media/recent", err => {
     if (err) {
       console.log(err);
@@ -40,6 +48,7 @@ router.get("/", async (req, res) => {
       mediaUrls: mediaUrls
     });
   });
+	*/
 });
 
 // First redirect user to instagram oauth
@@ -67,6 +76,17 @@ router.get("/handleauth", async (req, res) => {
   } catch (err) {
     res.json(err);
   }
+});
+
+router.get("/exec", async (req, res) => {
+	res.setHeader('Content-Type', 'application/json');
+  ig.get(req.query.rest, (err, data) => {
+    if (err) {
+			res.send(err);
+    } else {
+			res.send(data);
+		}
+  });
 });
 
 module.exports = router;
