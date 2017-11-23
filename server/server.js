@@ -6,7 +6,7 @@ const express = require("express"),
   fs = require("fs"),
   path = require("path"),
 	bodyParser = require('body-parser'),
-  routes = require("./routes/index");
+  routes = require("./routes/routes");
 
 const key = fs.readFileSync("private.key");
 const cert = fs.readFileSync("primary.crt");

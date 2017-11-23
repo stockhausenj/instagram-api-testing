@@ -1,7 +1,7 @@
 "use strict";
 
 // Make modules available.
-const ig = require("../components/instagram/index"),
+const ig = require("../components/instagram/instagram"),
   express = require("express");
 
 var router = express.Router();
@@ -21,34 +21,8 @@ router.get("/", async (req, res) => {
   res.render("index", {
     username: username,
     bio: bio,
-    profilePicture: profilePicture,
-    mediaUrls: ['']
+    profilePicture: profilePicture
   });
-
-	/*
-  var media = await ig.get("users/self/media/recent", err => {
-    if (err) {
-      console.log(err);
-    }
-  });
-  var mediaIds = media.data.map(value => value.id);
-  var mediaDetails = mediaIds.map(x =>
-    ig.get("media/" + x, err => {
-      if (err) {
-        console.log(err);
-      }
-    })
-  );
-  Promise.all(mediaDetails).then(function(results) {
-    var mediaUrls = results.map(x => x.data.images.standard_resolution.url);
-    res.render("index", {
-      username: username,
-      bio: bio,
-      profilePicture: profilePicture,
-      mediaUrls: mediaUrls
-    });
-  });
-	*/
 });
 
 // First redirect user to instagram oauth
@@ -78,6 +52,7 @@ router.get("/handleauth", async (req, res) => {
   }
 });
 
+// Return response from Instagram API
 router.get("/exec", async (req, res) => {
 	res.setHeader('Content-Type', 'application/json');
   ig.get(req.query.rest, (err, data) => {

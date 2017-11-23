@@ -2,37 +2,42 @@ html
 	head
 		title= title
 		style
-			include css/triangles.css
 			include css/bulma.css
+			include css/main.css
 	body
 		section(class="section")
 			div(class="container")
 				h1(class="title is-1") InstagramAPI Testing - #{username}
 				p(style="padding-bottom:5px;") #{bio}
 				div(class="tile is-ancestor")
-					div(class="tile is-vertical is-12")
+					div(class="tile is-2")
+						div(class="tile is-parent")
+							article(class="tile is-child notification is-primary" style="padding:0px;")
+								img(src=profilePicture style="margin:auto;display:block;width:100%;height:auto;")
+					div(class="tile")
 						div(class="tile is-parent")
 							article(class="tile is-child notification is-primary")
 								p(class="title") Magic is Science We Don't Understand Yet
 								div(class="field is-grouped")
+									div(class="select")
+										select
+											option GET
 									p(class="control is-expanded")
 										input#rest(class="input" type="text" placeholder="Endpoint")
 									p(class="control")
 										a#exec(class="button is-info") Execute
+								div(class="dropdown")
+									span Help?
+									div(class="dropdown-content")
+										p(style="color:black;") example:
+										p(style="color:black;") > users/self
+										a(href="https://www.instagram.com/developer/endpoints/" style="color:black;") Endpoints
+				div(class="tile is-ancestor")
+					div(class="tile is-vertical is-12")
 						div(class="tile is-parent")
 							article(class="tile is-child notification is-primary" style="overflow-x:scroll;")
 								p(class="title") Response
-								pre(id="json" style="height: 20pc;")
-						div(class="tile")
-							div(class="tile is-parent is-vertical")
-								article(class="tile is-child notification is-primary")
-									p(class="title") Profile Picture
-									img(src=profilePicture style="margin:auto;display:block;width:75%;height:auto;")
-							div(class="tile is-parent")
-								article(class="tile is-child notification is-primary")
-									p(class="title") Most Recent Photos
-									each val in mediaUrls
-										img(src=val style="padding:5px;")
+								pre(id="json" style="height: 40pc;")
 				block content
 		script
 			include js/jquery.min.js
